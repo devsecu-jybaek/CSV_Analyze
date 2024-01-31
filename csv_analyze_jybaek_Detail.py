@@ -100,7 +100,7 @@ total_6_top = total_6_top.drop('index',axis=1)
 total_6_top['count'] = total_6_top['count'].apply(lambda int_num : '{:,}'.format(int_num))
 
 total_10[col_nm_5] = pd.Categorical(total_10[col_nm_5], categories=sev_level_category, ordered=True)
-total_10_sort = total_10.sort_values(by=[col_nm_5,"count"], ascending=[True,False]).groupby(col_nm_5).head(3)
+total_10_sort = total_10.sort_values(by=[col_nm_5,"count"], ascending=[True,False]).groupby(col_nm_5, observed=True).head(3)
 total_10_top = pd.DataFrame(total_10_sort)
 total_10_top.reset_index(drop =False, inplace = True)
 total_10_top = total_10_top.drop('index',axis=1)
