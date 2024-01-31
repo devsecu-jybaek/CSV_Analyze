@@ -185,6 +185,6 @@ result_csv_file_detail = eqp_name +'한글보고서용_상세분석_[data_'+str(
 
 
 # 분석 결과를 CSV 파일로 저장
-total.to_csv(result_csv_file, header=True, encoding='utf-8-sig', index=True)
-total_detail.to_csv(result_csv_file_detail, header=True, encoding='utf-8-sig', index=True)
+total.to_csv('./../'+result_csv_file, header=True, encoding='utf-8-sig', index=True)
+total_detail.to_csv('./../'+result_csv_file_detail, header=True, encoding='utf-8-sig', index=True)
 

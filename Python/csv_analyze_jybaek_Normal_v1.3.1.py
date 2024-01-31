@@ -109,7 +109,7 @@ else :
     result_csv_file = eqp_name +'차트데이터용_top_20_분석[data_'+str(data_number)+'].csv'
 
 # 분석 결과를 CSV 파일로 저장
-total.to_csv(result_csv_file, header=True, encoding='utf-8-sig', index=True)
+total.to_csv('./../'+result_csv_file, header=True, encoding='utf-8-sig', index=True)
 
 
 
