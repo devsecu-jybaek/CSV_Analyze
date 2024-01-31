@@ -5,9 +5,11 @@ echo ※미포함 시 해당 프로그램이 원활하게 동작하지 않을 수 있습니다. (★★★★★
 echo.
 echo 일반 로그 분석: [출발지 ip] [목적지 ip] [공격명] [출발지 국가명] [위험도]
 echo 복합 로그 분석: [출발지 ip] [목적지 ip] [공격명] [출발지 국가명] [위험도] [url]
+echo.
+echo 분석 메뉴 선택 후 파일 선택 창이 뜨면 해당 로그파일(.csv)를 선택해서 열기 해주시면 됩니다.
 echo ================================================================================
 echo.
-echo 1. 일반 로그 분석
+echo 1. 일반 로그 분석 
 echo.
 echo 2. 복합 로그 분석(특정 고객사용)
 echo.
@@ -32,6 +34,7 @@ if "%_ok%" == "6" goto end
 
 :1
 cls
+cd Python
 python ./csv_analyze_jybaek_Normal_v1.3.1.py
 
 echo 로그 파일이 생성되었습니다.
@@ -40,6 +43,7 @@ goto end
 
 :2
 cls
+cd Python
 python ./csv_analyze_jybaek_Detail_v1.3.1.py
 
 echo 로그 파일이 생성되었습니다.
