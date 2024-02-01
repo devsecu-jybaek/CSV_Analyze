@@ -4,7 +4,7 @@ import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
 
-#최종 수정일자: 2024-01-28
+#최종 수정일자: 2024-01-31
 
 # CSV 파일 경로 지정(기존코드)
 window = tk.Tk()

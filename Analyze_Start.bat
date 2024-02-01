@@ -38,7 +38,7 @@ if "%_ok%" == "6" goto end
 :1
 cls
 cd Python
-python ./csv_analyze_jybaek_Normal_v1.3.1.py
+python ./csv_analyze_jybaek_Normal_v1.4.0.py
 
 echo 로그 파일이 생성되었습니다.
 pause
@@ -47,7 +47,7 @@ goto end
 :2
 cls
 cd Python
-python ./csv_analyze_jybaek_Detail_v1.3.1.py
+python ./csv_analyze_jybaek_Detail_v1.4.0.py
 
 echo 로그 파일이 생성되었습니다.
 pause

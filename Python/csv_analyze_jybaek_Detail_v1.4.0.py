@@ -4,7 +4,8 @@ import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
 
-#최종 수정일자: 2024-01-28
+#최종 수정일자: 2024-02-01
+#line 75, 97, 104, 189, 190 update
 
 # CSV 파일 경로 지정(기존코드)
 window = tk.Tk()
@@ -71,7 +72,7 @@ total_5.reset_index(drop =False, inplace = True)
 
 
 # 정렬을 위한 카테고리 생성
-attack_category = total_3[col_nm_3].tolist()
+attack_category = total_3[col_nm_3].dropna().tolist()
 sev_level_category = total_5[col_nm_5].dropna().tolist()
 
 
@@ -93,14 +94,14 @@ total_10.reset_index(drop =False, inplace = True)
 
 # 복합 분석 시 TOP 3 데이터 추출을 위한 카테고리 함수를 이용한 정렬 및 그룹화 작업
 total_6[col_nm_3] = pd.Categorical(total_6[col_nm_3], categories=attack_category, ordered=True)
-total_6_sort = total_6.sort_values(by=[col_nm_3,"count"], ascending=[True,False]).groupby(col_nm_3, observed=True).head(3)
+total_6_sort = total_6.sort_values(by=[col_nm_3,"count"], ascending=[True,False]).groupby(col_nm_3, observed=True).head(5)
 total_6_top = pd.DataFrame(total_6_sort)
 total_6_top.reset_index(drop =False, inplace = True)
 total_6_top = total_6_top.drop('index',axis=1)
 total_6_top['count'] = total_6_top['count'].apply(lambda int_num : '{:,}'.format(int_num))
 
 total_10[col_nm_5] = pd.Categorical(total_10[col_nm_5], categories=sev_level_category, ordered=True)
-total_10_sort = total_10.sort_values(by=[col_nm_5,"count"], ascending=[True,False]).groupby(col_nm_5, observed=True).head(3)
+total_10_sort = total_10.sort_values(by=[col_nm_5,"count"], ascending=[True,False]).groupby(col_nm_5, observed=True).head(5)
 total_10_top = pd.DataFrame(total_10_sort)
 total_10_top.reset_index(drop =False, inplace = True)
 total_10_top = total_10_top.drop('index',axis=1)
