@@ -4,8 +4,9 @@ import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
 
-#최종 수정일자: 2024-02-01
-#line 75, 97, 104, 189, 190 update
+# 최종 수정일자: 2024-02-10
+# Version : 1.5.0
+# update : 
 
 # CSV 파일 경로 지정(기존코드)
 window = tk.Tk()
@@ -25,6 +26,7 @@ col_nm_3 = '공격명'
 col_nm_4 = '출발지 국가'
 col_nm_5 = '위험도'
 col_nm_6 = 'url'
+col_nm_7 = 'Action'
 
 # 위험도 카테고리 결측치 및 이상치 값치환
 df.loc[df[col_nm_5] == "1", col_nm_5] = 'High'
@@ -41,10 +43,10 @@ top_sev_level_20 = df.loc[:,col_nm_5].value_counts(dropna = False).head(20)
 
 # 항목별 데이터 조회 후 프레임화(Detail보고서)
 try:
-    top_attack_url_sev_level_200 = df.loc[:,[col_nm_3,col_nm_6,col_nm_5]].value_counts(dropna = False)
+    top_attack_url_sev_level_200 = df.loc[:,[col_nm_3,col_nm_6,col_nm_5,col_nm_7]].value_counts(dropna = False)
 except:
     col_nm_6 = 'url_p'
-    top_attack_url_sev_level_200 = df.loc[:,[col_nm_3,col_nm_6,col_nm_5]].value_counts(dropna = False)
+    top_attack_url_sev_level_200 = df.loc[:,[col_nm_3,col_nm_6,col_nm_5,col_nm_7]].value_counts(dropna = False)
 
 top_url_20 = df.loc[:,col_nm_6].value_counts(dropna = False).head(100)
 top_src_ip_src_country_20 = df.loc[:,[col_nm_1,col_nm_4]].value_counts(dropna = False).head(100)
@@ -101,6 +103,7 @@ total_6_top = total_6_top.drop('index',axis=1)
 total_6_top['count'] = total_6_top['count'].apply(lambda int_num : '{:,}'.format(int_num))
 
 total_10[col_nm_5] = pd.Categorical(total_10[col_nm_5], categories=sev_level_category, ordered=True)
+total_10.drop(total_10[total_10[col_nm_3]==''].index, inplace=True) # 공격명이 비어있는 행 제거
 total_10_sort = total_10.sort_values(by=[col_nm_5,"count"], ascending=[True,False]).groupby(col_nm_5, observed=True).head(3)
 total_10_top = pd.DataFrame(total_10_sort)
 total_10_top.reset_index(drop =False, inplace = True)
@@ -149,17 +152,17 @@ total.insert(20, "", idx_default, allow_duplicates=True)
 
 
 total_detail.index = idx_100
-total_detail.insert(4, "", "", allow_duplicates=True)
-total_detail.insert(5, "", idx_100, allow_duplicates=True)
+total_detail.insert(5, "", "", allow_duplicates=True)
+total_detail.insert(6, "", idx_100, allow_duplicates=True)
 
-total_detail.insert(8, "", "", allow_duplicates=True)
-total_detail.insert(9, "", idx_100, allow_duplicates=True)
+total_detail.insert(9, "", "", allow_duplicates=True)
+total_detail.insert(10, "", idx_100, allow_duplicates=True)
 
-total_detail.insert(13, "", "", allow_duplicates=True)
-total_detail.insert(14, "", idx_100, allow_duplicates=True)
+total_detail.insert(14, "", "", allow_duplicates=True)
+total_detail.insert(15, "", idx_100, allow_duplicates=True)
 
-total_detail.insert(18, "", "", allow_duplicates=True)
-total_detail.insert(19, "", idx_100, allow_duplicates=True)
+total_detail.insert(19, "", "", allow_duplicates=True)
+total_detail.insert(20, "", idx_100, allow_duplicates=True)
 
 
 

@@ -3,7 +3,7 @@ echo ===========================================================================
 echo 분석 실행 전, 로그 파일 다운시 해당 항목을 포함하였는지 꼭 확인해주세요.
 echo.
 echo 일반 로그 분석: [출발지 ip] [목적지 ip] [공격명] [출발지 국가명] [위험도]
-echo 복합 로그 분석: [출발지 ip] [목적지 ip] [공격명] [출발지 국가명] [위험도] [url]
+echo 복합 로그 분석: [출발지 ip] [목적지 ip] [공격명] [출발지 국가명] [위험도] [url] [Action]
 echo.
 echo ※미포함 시 해당 프로그램이 원활하게 동작하지 않을 수 있습니다. (★★★★★)
 echo ※[decode] 항목 포함 시 해당 프로그램이 원활하게 동작하지 않을 수 있습니다. (★★★★★)
@@ -38,7 +38,7 @@ if "%_ok%" == "6" goto end
 :1
 cls
 cd Python
-python ./csv_analyze_jybaek_Normal_v1.4.0.py
+python ./csv_analyze_jybaek_Normal.py
 
 echo 로그 파일이 생성되었습니다.
 pause
@@ -47,7 +47,7 @@ goto end
 :2
 cls
 cd Python
-python ./csv_analyze_jybaek_Detail_v1.4.0.py
+python ./csv_analyze_jybaek_Detail.py
 
 echo 로그 파일이 생성되었습니다.
 pause
