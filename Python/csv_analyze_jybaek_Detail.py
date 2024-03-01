@@ -1,6 +1,7 @@
 import csv
 import re
 import pandas as pd
+import numpy as np
 import tkinter as tk
 from tkinter import filedialog
 
@@ -103,7 +104,9 @@ total_6_top = total_6_top.drop('index',axis=1)
 total_6_top['count'] = total_6_top['count'].apply(lambda int_num : '{:,}'.format(int_num))
 
 total_10[col_nm_5] = pd.Categorical(total_10[col_nm_5], categories=sev_level_category, ordered=True)
-total_10.drop(total_10[total_10[col_nm_3]==''].index, inplace=True) # 공격명이 비어있는 행 제거
+
+total_10[col_nm_3].replace('',np.nan,inplace=True) # 공격명이 비어있는 행 nan 값으로 치환
+total_10.dropna(subset=[col_nm_3],inplace=True) # 공격명이 비어있는 행 제거
 total_10_sort = total_10.sort_values(by=[col_nm_5,"count"], ascending=[True,False]).groupby(col_nm_5, observed=True).head(3)
 total_10_top = pd.DataFrame(total_10_sort)
 total_10_top.reset_index(drop =False, inplace = True)
