@@ -5,8 +5,8 @@ import numpy as np
 import tkinter as tk
 from tkinter import filedialog
 
-# 최종 수정일자: 2024-02-10
-# Version : 1.5.0
+# 최종 수정일자: 2024-10-02
+# Version : 1.6.0
 # update : 
 
 # CSV 파일 경로 지정(기존코드)
@@ -134,8 +134,15 @@ total = pd.concat([total_1,total_2,total_2_2,total_3,total_4,total_5],axis=1)
 total_detail = pd.concat([total_6_top,total_7,total_8,total_9,total_10_top],axis=1)
 
 # 각 프레임 구분을 위해 기본 인덱스 이름 변경 및 빈열 & 인덱스 중복 추가
-idx_default= [f"{i}위" for i in range(1, 21)]
-idx_100= [f"{i}위" for i in range(1, 101)] # TOP3 구현시 개체 수에 따른 조정 필요성에 의해 인덱스를 100개로 임의 설정
+# idx_default= [f"{i}위" for i in range(1, 21)]
+# idx_100= [f"{i}위" for i in range(1, 101)] # TOP3 구현시 개체 수에 따른 조정 필요성에 의해 인덱스를 100개로 임의 설정
+
+# 데이터프레임의 크기를 확인하여 idx_default 및 idx_100 생성
+num_rows_total = total.shape[0]
+num_rows_total_detail = total_detail.shape[0]
+
+idx_default = [f"{i}위" for i in range(1, num_rows_total + 1)]
+idx_100 = [f"{i}위" for i in range(1, num_rows_total_detail + 1)]  # TOP3 구현 시 개체 수에 따른 조정 필요성에 의해 인덱스를 100개로 임의 설정
 
 total.index = idx_default
 total.insert(2, "", "", allow_duplicates=True)

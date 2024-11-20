@@ -75,7 +75,11 @@ total_2_2 = pd.DataFrame(columns=['목적지IP','count'])
 total = pd.concat([total_1,total_2,total_2_2,total_3,total_4,total_5],axis=1)
 
 # 각 프레임 구분을 위해 기본 인덱스 이름 변경 및 빈열 & 인덱스 중복 추가
-idx_default= [f"{i}위" for i in range(1, 21)]
+# idx_default= [f"{i}위" for i in range(1, 21)]
+
+num_rows_total = total.shape[0]
+
+idx_default = [f"{i}위" for i in range(1, num_rows_total + 1)]
 
 total.index = idx_default
 total.insert(2, "", "", allow_duplicates=True)
